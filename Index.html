@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>UI ডিজাইন – ধাপে ধাপে</title>
+<link href="https://fonts.googleapis.com/css2?family=Atma:wght@400;600&family=Hind+Siliguri:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07060f;--ink:#f3f1ff;--mute:#a9a4c7;--v:#8b5cf6;--l:#c6ff3d;--line:#2a2548;--paper:#fff8dc;
+ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0}
+body{font-family:'Hind Siliguri',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden}
+.top{position:sticky;top:0;z-index:5;background:#07060fe6;backdrop-filter:blur(8px);padding:12px 18px;padding-top:calc(12px + env(safe-area-inset-top,0px));border-bottom:1px solid var(--line)}
+.top b{font-size:15px}
+.bar{height:5px;background:#ffffff14;border-radius:5px;margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;width:57.14%;background:linear-gradient(90deg,var(--v),var(--l));border-radius:5px;animation:grow 1.2s ease-out}
+@keyframes grow{from{width:0}}
+.wrap{max-width:820px;margin:auto;padding:26px 18px 60px}
+.badge{display:inline-block;background:var(--l);color:#0b0a14;font-weight:700;padding:3px 14px;border-radius:50px;font-size:14px}
+h1{font-size:clamp(28px,6vw,46px);line-height:1.2;margin:12px 0 4px}
+.hand{font-family:'Atma','Hind Siliguri',cursive;color:var(--l)}
+.note{font-family:'Atma','Hind Siliguri',cursive;font-size:19px;line-height:1.4;color:#2b2113;background:var(--paper);padding:14px 16px;border-radius:6px 16px 8px 14px;transform:rotate(-1.2deg);box-shadow:0 8px 20px rgba(0,0,0,.35);position:relative;margin:16px 0}
+.note.r{transform:rotate(1.4deg)}
+.note::before{content:"";position:absolute;top:-9px;left:28px;width:62px;height:18px;background:#c6ff3d99;transform:rotate(-4deg);border-radius:3px}
+.sec{margin-top:34px;opacity:0;transform:translateY(22px);animation:up .7s forwards}
+.sec:nth-of-type(2){animation-delay:.2s}.sec:nth-of-type(3){animation-delay:.4s}.sec:nth-of-type(4){animation-delay:.6s}
+@keyframes up{to{opacity:1;transform:none}}
+h2{font-size:22px;margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{border:1px solid var(--line);background:#ffffff0d;padding:6px 16px;border-radius:50px}
+.chips span:nth-child(2n){border-color:var(--v)}
+.pal{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.sw{border-radius:18px;padding:60px 14px 14px;border:1px solid var(--line);position:relative;font-size:13px}
+.sw b{display:block;font-size:15px}
+.sw em{font-style:normal;font-family:'Atma',cursive;font-size:16px;display:block;margin-top:4px;line-height:1.25}
+.spec{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.spec>div{border:1px solid var(--line);border-radius:18px;padding:18px;background:#ffffff08}
+.spec .big{font-size:34px;font-weight:700;line-height:1.2}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tier{border-radius:20px;padding:20px;border:1px solid var(--line)}
+.tier.sp{background:linear-gradient(160deg,#3b1d8f,#12102a);border-color:var(--v)}
+.tier h3{font-size:18px;margin-bottom:6px}
+.tier ul{list-style:none;font-size:15px;color:#e6e1ff}
+.tier li{padding:3px 0}
+.tier li::before{content:"✦ ";color:var(--l)}
+.next{margin-top:36px;text-align:center}
+.next .hand{font-size:24px;display:inline-block;animation:wig 1.6s ease-in-out infinite}
+@keyframes wig{50%{transform:translateX(8px) rotate(-2deg)}}
+.divider{margin:50px 0 10px;border-top:1px dashed var(--line)}
+.pic{background:#0d0b1c;border:1px solid var(--line);border-radius:22px;padding:10px;margin-top:12px}
+.pic svg{width:100%;height:auto;display:block}
+.hw{font-family:'Atma','Hind Siliguri',cursive;fill:#fff8dc;font-size:14.5px}
+.hw.g{fill:#c6ff3d}
+.draw path.a{stroke-dasharray:300;stroke-dashoffset:300;animation:dr 1.4s ease-out forwards}
+@keyframes dr{to{stroke-dashoffset:0}}
+@media (max-width:560px){.spec,.cmp{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.sec{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="top"><b>UI ডিজাইন · ধাপে ধাপে</b> <span style="color:var(--mute);font-size:14px">ধাপ ৪ / ৭</span><div class="bar"><i></i></div></div>
+<div class="wrap">
+
+<!-- STEP 1 -->
+<span class="badge">ধাপ ১</span>
+<h1>দিক ঠিক করা <span class="hand">(Direction)</span></h1>
+<p style="color:var(--mute)">ক্রিয়েটার স্টুডিওর সাইটের মেজাজ, রঙ ও লেখার ধরন আগে ঠিক করি। এটা ঠিক হলে বাকি সব সহজ।</p>
+<div class="note">আগে ঠিক করি সাইটটা দেখে মানুষ কী ভাববে। দামি, সিনেমার মতো, আর একটু রহস্যময়! ✨</div>
+
+<div class="sec"><h2>১. মেজাজ (Mood)</h2>
+  <div class="chips"><span>সিনেমাটিক</span><span>রহস্যময়</span><span>দামি</span><span>আধুনিক</span><span>শক্তিশালী</span></div>
+  <div class="note r">এই পাঁচটা শব্দই আমাদের কম্পাস। কোনো ডিজাইন এগুলোর সাথে না মিললে বাদ।</div>
+</div>
+
+<div class="sec"><h2>২. রঙ (Palette)</h2>
+  <div class="pal">
+    <div class="sw" style="background:#07060f"><b>গাঢ় কালো-বেগুনি</b>#07060f<em>পেছনের মঞ্চ, রাতের সিনেমা হল</em></div>
+    <div class="sw" style="background:#8b5cf6;border:0"><b>বেগুনি</b>#8b5cf6<em>রহস্য ও সৃজনশীলতা</em></div>
+    <div class="sw" style="background:#c6ff3d;color:#0b0a14;border:0"><b>লাইম</b>#c6ff3d<em>শুধু বাটনে! চোখ টানে</em></div>
+    <div class="sw" style="background:#f3f1ff;color:#0b0a14;border:0"><b>নরম সাদা</b>#f3f1ff<em>লেখা পড়ার জন্য</em></div>
+  </div>
+  <div class="note">নিয়ম: লাইম রঙ শুধু ১-২ জায়গায়। বেশি দিলে দামি ভাব নষ্ট!</div>
+</div>
+
+<div class="sec"><h2>৩. লেখা (Typography)</h2>
+  <div class="spec">
+    <div><div class="big">আপনার কাজ</div><p style="color:var(--mute);font-size:14px">Hind Siliguri · বড় শিরোনাম, মোটা</p></div>
+    <div><div class="big hand" style="font-size:30px">হাতের লেখা নোট</div><p style="color:var(--mute);font-size:14px">Atma · শুধু ব্যাখ্যা ও ছোট ইঙ্গিতে</p></div>
+  </div>
+  <div class="note r">শিরোনাম বড় ও মোটা, বর্ণনা হালকা। হাতের লেখা বেশি না, নইলে পেশাদার ভাব কমে।</div>
+</div>
+
+<div class="sec"><h2>৪. সুপার প্রিমিয়াম বনাম প্রিমিয়াম</h2>
+  <div class="cmp">
+    <div class="tier sp"><h3>সুপার প্রিমিয়াম</h3><ul><li>৩D ভার্চুয়াল অ্যানিমেশন</li><li>কাচের মতো কার্ড</li><li>স্ক্রলের সাথে নড়াচড়া</li><li>কাস্টম কার্সার ও আলো</li></ul></div>
+    <div class="tier"><h3>প্রিমিয়াম</h3><ul><li>পরিষ্কার লেআউট</li><li>হালকা অ্যানিমেশন</li><li>দ্রুত লোড</li><li>সহজ সম্পাদনা</li></ul></div>
+  </div>
+  <div class="note">আমরা সুপার প্রিমিয়াম দিয়ে শুরু করব, তারপর ধাপে ধাপে প্রিমিয়ামে নামিয়ে আনব। দুটোই ক্লায়েন্টকে বিক্রি করা যাবে।</div>
+</div>
+
+<div class="divider"></div>
+<!-- STEP 2 -->
+<span class="badge">ধাপ ২</span>
+<h1>লেআউটের নকশা <span class="hand">(Wireframe)</span></h1>
+<p style="color:var(--mute)">সাইটের কোন অংশ কোথায় বসবে, আগে ছবিতে এঁকে দেখি। নোটগুলো সরাসরি নকশার গায়ে হাতে লেখা।</p>
+<div class="pic draw">
+<svg viewBox="0 0 400 640" role="img" aria-label="হাতে লেখা নোট সহ ওয়েবসাইটের লেআউট নকশা">
+<defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 1L9 5L0 9" fill="none" stroke="#c6ff3d" stroke-width="1.6"/></marker></defs>
+<g fill="none" stroke="#8b5cf6" stroke-width="1.6">
+<rect x="14" y="8" width="176" height="600" rx="16" stroke="#3a3466"/>
+<rect x="22" y="16" width="160" height="26" rx="8"/><rect x="30" y="24" width="36" height="10" rx="4"/><rect x="134" y="23" width="40" height="12" rx="6" stroke="#c6ff3d"/>
+<rect x="22" y="50" width="160" height="160" rx="10"/>
+<rect x="30" y="64" width="90" height="12" rx="4" fill="#8b5cf655"/><rect x="30" y="82" width="70" height="12" rx="4" fill="#8b5cf655"/><rect x="30" y="104" width="80" height="6" rx="3"/>
+<rect x="30" y="122" width="44" height="16" rx="8" stroke="#c6ff3d"/><rect x="80" y="122" width="36" height="16" rx="8"/>
+<circle cx="142" cy="170" r="26" stroke="#c6ff3d" stroke-dasharray="4 4"/><circle cx="142" cy="170" r="11"/>
+<rect x="22" y="220" width="76" height="52" rx="8"/><rect x="106" y="220" width="76" height="52" rx="8"/><rect x="22" y="280" width="76" height="52" rx="8"/><rect x="106" y="280" width="76" height="52" rx="8"/>
+<rect x="22" y="344" width="48" height="62" rx="8"/><rect x="76" y="344" width="48" height="62" rx="8"/><rect x="130" y="344" width="52" height="62" rx="8"/>
+<rect x="22" y="418" width="160" height="96" rx="12" fill="#8b5cf622"/><rect x="52" y="440" width="100" height="28" rx="6" stroke="#c6ff3d"/>
+<rect x="26" y="560" width="72" height="24" rx="12" stroke="#25d366"/><rect x="106" y="560" width="72" height="24" rx="12"/>
+</g>
+<g class="hw">
+<circle cx="200" cy="29" r="0"/>
+<text x="214" y="22">১. উপরে মেনু</text><text x="214" y="40" class="g">লোগো + ১টা বাটন</text>
+<text x="214" y="92">২. বড় শিরোনাম!</text><text x="214" y="110" class="g">৩ সেকেন্ডে বুঝতে হবে</text>
+<text x="214" y="176">৩. এখানে ৩D</text><text x="214" y="194" class="g">আকৃতি ঘুরবে</text>
+<text x="214" y="256">৪. সেরা কাজ আগে</text><text x="214" y="274" class="g">কার্ড ২×২ গ্রিডে</text>
+<text x="214" y="368">৫. ৩টা সুবিধা</text><text x="214" y="386" class="g">বেশি না, ক্লান্তি আসে</text>
+<text x="214" y="446">৬. দাম বড় করে</text><text x="214" y="464" class="g">লুকাবে না</text>
+<text x="214" y="566">৭. নিচে স্থির বাটন</text><text x="214" y="584" class="g">ফোনে সবসময় থাকে</text>
+</g>
+<g fill="none" stroke="#c6ff3d" stroke-width="1.6" stroke-linecap="round" marker-end="url(#ar)">
+<path class="a" d="M210 30 C200 28 196 29 190 29"/>
+<path class="a" d="M210 98 C198 96 190 88 150 90"/>
+<path class="a" d="M210 180 C200 176 186 172 172 170"/>
+<path class="a" d="M210 262 C200 262 194 256 182 250"/>
+<path class="a" d="M210 374 C200 374 192 376 182 376"/>
+<path class="a" d="M210 452 C200 454 192 456 182 456"/>
+<path class="a" d="M210 572 C200 574 190 574 178 572"/>
+</g>
+</svg>
+</div>
+<div class="note">উপর থেকে নিচে একটাই পথ: দেখো → বিশ্বাস করো → দাম জানো → মেসেজ করো। মাঝখানে কিছু আটকালে ক্লায়েন্ট চলে যাবে!</div>
+<div class="note r">নিয়ম: প্রতিটা অংশে একটাই কাজ। হিরোতে শুধু বার্তা, কার্ডে শুধু কাজ, নিচে শুধু দাম ও বাটন।</div>
+<!-- /STEP 2 -->
+<div class='divider'></div>
+<!-- STEP 3 -->
+<span class='badge'>ধাপ ৩</span>
+<h1>হিরো অংশ <span class='hand'>(সুপার প্রিমিয়াম)</span></h1>
+<p style='color:var(--mute)'>সাইট খুললে প্রথমে যা দেখা যায়। এটাই সবচেয়ে বড় ছাপ ফেলে, তাই স্তরে স্তরে সাজাই।</p>
+
+<h2 style='margin-top:26px'>ক. হিরোর চার স্তর</h2>
+<div class='pic draw'>
+<svg viewBox='0 0 400 470' role='img' aria-label='হিরোর চারটি স্তরের ছবি, হাতের লেখা নোট সহ'>
+<defs><marker id='ar3' viewBox='0 0 10 10' refX='8' refY='5' markerWidth='7' markerHeight='7' orient='auto'><path d='M0 1L9 5L0 9' fill='none' stroke='#c6ff3d' stroke-width='1.6'/></marker>
+<linearGradient id='bgp' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#2a1a5e'/><stop offset='1' stop-color='#07060f'/></linearGradient></defs>
+<g stroke='#3a3466' stroke-dasharray='4 4' fill='none'><path d='M120 100V150'/><path d='M120 210V260'/><path d='M120 320V370'/></g>
+<g stroke-width='1.6'>
+<polygon points='120,370 200,400 120,430 40,400' fill='url(#bgp)' stroke='#8b5cf6'/>
+
+</div>
+<div class='note r'>কার্ডে কাচের মতো ঝাপসা ভাব (ব্লার ৬px) দিলে সুপার প্রিমিয়াম লাগে। প্রিমিয়াম ভার্সনে এটা বাদ দিয়ে সাধারণ রং রাখব।</div>
+<!-- /STEP 4 -->
+<div class='next'><span class='hand'>পরের ধাপের জন্য লেখো "নেক্সট" →</span></div>
+<!-- /STEP 1 -->
+
+</div>
+</body>
+</html>
+
+  
